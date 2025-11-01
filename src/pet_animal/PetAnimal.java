@@ -14,7 +14,7 @@ public abstract class PetAnimal {
         return name;
     }
     public int getAge() {
-        return yearOfBirth.getYear();
+        return  LocalDate.now().getYear() - yearOfBirth.getYear();
     }
     public abstract void sleep();
     public abstract void makeSound();

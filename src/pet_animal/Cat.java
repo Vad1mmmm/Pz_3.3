@@ -1,13 +1,13 @@
 package pet_animal;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 public class Cat extends PetAnimal implements Comparable<Cat>{
 
-    private int caughtMiceCount;
-    public Cat(String name, LocalDate yearOfBirth, int caughtMiceCount) {
+    private int caughtMiceCount = new Random().nextInt(getAge())*getAge() + 1;;
+    public Cat(String name, LocalDate yearOfBirth) {
         super(name, yearOfBirth);
-        this.caughtMiceCount = caughtMiceCount;
     }
 
     public int getCaughtMiceCount() {
@@ -24,7 +24,7 @@ public class Cat extends PetAnimal implements Comparable<Cat>{
     }
     @Override
     public String toString(){
-        return "Name: " + getName() + ", year of birth: " + getAge() + ", caught mice count: " + caughtMiceCount;
+        return "Name: " + getName() + ", age: " + getAge() + ", caught mice count: " + caughtMiceCount;
     }
     @Override
     public int  compareTo(Cat o) {
