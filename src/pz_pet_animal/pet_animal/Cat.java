@@ -1,4 +1,4 @@
-package pet_animal;
+package pz_pet_animal.pet_animal;
 
 import java.time.LocalDate;
 import java.util.Random;
@@ -24,7 +24,7 @@ public class Cat extends PetAnimal implements Comparable<Cat>{
     }
     @Override
     public String toString(){
-        return "Name: " + getName() + ", age: " + getAge() + ", caught mice count: " + caughtMiceCount;
+        return "Cat " + getName() + " caught " +  getCaughtMiceCount() + " mice";
     }
     @Override
     public int  compareTo(Cat o) {

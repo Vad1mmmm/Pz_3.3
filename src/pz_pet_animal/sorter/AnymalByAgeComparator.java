@@ -1,5 +1,5 @@
-package sorter;
-import pet_animal.*;
+package pz_pet_animal.sorter;
+import pz_pet_animal.pet_animal.*;
 import java.util.Comparator;
 
 public class AnymalByAgeComparator implements Comparator<PetAnimal> {
