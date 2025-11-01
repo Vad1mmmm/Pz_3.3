@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Cat extends PetAnimal implements Comparable<Cat>{
 
-    private int caughtMiceCount = new Random().nextInt(getAge())*getAge() + 1;;
+    private final int caughtMiceCount = new Random().nextInt(getAge())*getAge() + 1;
     public Cat(String name, LocalDate yearOfBirth) {
         super(name, yearOfBirth);
     }

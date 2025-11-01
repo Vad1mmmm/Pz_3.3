@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Random;
 
 public class Dog  extends PetAnimal implements Comparable<Dog> {
-    private int scaredAwayThievesCount = new Random().nextInt(getAge())*getAge() + 1;
+    private final int scaredAwayThievesCount = new Random().nextInt(getAge())*getAge() + 1;
 
     public Dog(String name, LocalDate yearOfBirth) {
         super(name, yearOfBirth);
