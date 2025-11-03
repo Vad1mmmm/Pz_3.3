@@ -1,40 +1,98 @@
 package pz_my_linked_list;
 
 public class MyLinkedList {
-    private Element[] heads;
-    public MyLinkedList() {
-        heads = new Element[10];
-    }
-    public MyLinkedList(int size) {
-        heads = new  Element[size];
-    }
+    private Element head;
+    private Element tail;
+    private int size;
 
-    public void add(Element element) {
-        for (int i = 0; i < heads.length; i++) {
-            if (heads[i] == null) {
-                heads[i] = element;
-                break;
-            }
+    private static class Element {
+        private Integer element;
+        private Element next;
+
+        public Element(Integer element) {
+            this.element = element;
+        }
+        public boolean hasNext() {
+            return next != null;
+        }
+        public Element next() {
+            return next;
+        }
+        public Integer getElement() {
+            return element;
+        }
+        public void setElement( Integer element) {
+            this.element = element;
+        }
+        public void setNext(Element next) {
+            this.next = next;
         }
     }
-
-    public void add(int index, int value) {
-        if (index > heads.length - 1) {
-            for (int i = heads.length - 1; i > index; i--) {
-
-            }
+    public void add(Integer element) {
+        Element newElement = new Element(element);
+        if (head == null) {
+            head = newElement;
+            tail = newElement;
+        }
+        else {
+            tail.setNext(newElement);
+            tail = newElement;
         }
     }
-
-    public Element[] getLists() {
-        return heads;
+    public void add(int index, Integer element) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index: " + index);
+        }
+        Element newElement = new Element(element);
+        if (index == 0) {
+            newElement.setNext(head);
+            head = newElement;
+            if(size == 0) tail = newElement;
+        }
+        if(index == size) {
+            tail.setNext(newElement);
+            tail = newElement;
+        }
+        else {
+            Element prev = head;
+            for (int i = 0; i < index - 1; i++) {
+                prev = prev.next;
+            }
+            newElement.setNext(prev.next);
+            prev.setNext(newElement);
+        }
+        size++;
     }
 
-    public static void writeLists(MyLinkedList myLinkedList) {
-        for (int i = 0; i < myLinkedList.getLists().length; i++) {
-            if (myLinkedList.getLists()[i] != null) {
-                System.out.println(myLinkedList.getLists()[i]);
-            }
+    public void addFirst(Integer element) {
+        Element newElement = new Element(element);
+        if (head == null) {
+            head = newElement;
+            tail = newElement;
+        }
+        else {
+            newElement.setNext(head);
+            head = newElement;
+            if(size == 0) tail = newElement;
+        }
+        size++;
+    }
+    public void addLast(Integer element) {
+        Element newElement = new Element(element);
+        if (head == null) {
+            head = newElement;
+            tail = newElement;
+        }
+        else {
+            tail.setNext(newElement);
+            tail = newElement;
         }
     }
+//    public Element get(Integer index) {
+//        if (index < 0 || index > size) {
+//            throw new IndexOutOfBoundsException("Index: " + index);
+//        }
+//
+//    }
+
 }
