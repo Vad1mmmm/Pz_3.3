@@ -87,12 +87,38 @@ public class MyLinkedList {
             tail.setNext(newElement);
             tail = newElement;
         }
+        size++;
     }
-//    public Element get(Integer index) {
-//        if (index < 0 || index > size) {
-//            throw new IndexOutOfBoundsException("Index: " + index);
-//        }
-//
-//    }
+    public Integer get(int index){
+        Element element = head;
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index: " + index);
+        }
+        for (int i = 0; i < index; i++) {
+            element = element.next();
+        }
+        return element.element;
+    }
+    public Integer getFirst() {
+        return head.element;
+    }
+    public Integer getLast() {
+        return tail.element;
+    }
+    public Integer remove(int index){
 
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index: " + index);
+        }
+
+
+        Integer returnValue;
+
+        return null;
+    }
+    public Integer removeFirst(){
+        head = head.next;
+        size--;
+        return head.element;
+    }
 }
