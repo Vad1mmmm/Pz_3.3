@@ -38,6 +38,7 @@ public class MyLinkedList {
             tail.setNext(newElement);
             tail = newElement;
         }
+        size++;
     }
     public void add(int index, Integer element) {
         if (index < 0 || index > size) {
@@ -49,7 +50,7 @@ public class MyLinkedList {
             head = newElement;
             if(size == 0) tail = newElement;
         }
-        if(index == size) {
+        else if(index == size) {
             tail.setNext(newElement);
             tail = newElement;
         }
@@ -91,7 +92,7 @@ public class MyLinkedList {
     }
     public Integer get(int index){
         Element element = head;
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index);
         }
         for (int i = 0; i < index; i++) {
@@ -136,14 +137,23 @@ public class MyLinkedList {
         return removedValue;
     }
     public Integer removeLast(){
+        if (size == 0) return null;
+        if (size == 1) {
+            Integer val = head.getElement();
+            head = tail = null;
+            size = 0;
+            return val;
+        }
         Element element = head;
-        while(element.next() != null){
+        while (element.next().next() != null) { // до передостаннього
             element = element.next();
         }
         Integer removedValue = tail.getElement();
+        tail = element;
         tail.setNext(null);
         size--;
         return removedValue;
+
     }
     public void set(int index, Integer element) {
         if (index < 0 || index >= size) {
