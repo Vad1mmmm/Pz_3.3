@@ -105,20 +105,77 @@ public class MyLinkedList {
     public Integer getLast() {
         return tail.element;
     }
-    public Integer remove(int index){
 
-        if (index < 0 || index > size) {
+
+    public Integer remove(int index){
+        if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index);
         }
 
+        if(index == 0){
+            return removeFirst();
+        }
+        if(index == size - 1){
+            return removeLast();
+        }
 
-        Integer returnValue;
-
-        return null;
+        Element element = head;
+        for(int i = 0; i < index - 1; i++) {
+            element = element.next();
+        }
+        Element toRemove = element.next();
+        Integer removedValue = toRemove.getElement();
+        element.setNext(toRemove.next());
+        size--;
+        return removedValue;
     }
     public Integer removeFirst(){
-        head = head.next;
+        Integer removedValue = head.getElement();
+        head = head.next();
         size--;
-        return head.element;
+        return removedValue;
     }
+    public Integer removeLast(){
+        Element element = head;
+        while(element.next() != null){
+            element = element.next();
+        }
+        Integer removedValue = tail.getElement();
+        tail.setNext(null);
+        size--;
+        return removedValue;
+    }
+    public void set(int index, Integer element) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index);
+        }
+        if (index == 0) {
+            head.setElement(element);
+        }
+        else {
+            Element prev = head;
+            for (int i = 0; i < index; i++) {
+                prev = prev.next();
+            }
+            prev.setElement(element);
+        }
+    }
+    public int size(){
+        return size;
+    }
+
+    public int indexOf(Integer e) {
+        Element element = head;
+        int index = 0;
+
+        while (element != null) {
+            if (element.getElement().equals(e)) {
+                return index;
+            }
+            element = element.next();
+            index++;
+        }
+        return -1;
+    }
+
 }
